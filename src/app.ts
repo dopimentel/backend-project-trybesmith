@@ -1,18 +1,12 @@
 import express from 'express';
-import productsService from './services/products.service';
+import productsController from './controllers/products.controller';
 
 const app = express();
 
 app.use(express.json());
 
-app.get('/products', async (req, res) => {
-  const products = await productsService.getAll();
-  res.json(products);
-});
+app.get('/products', productsController.getAll);
 
-app.post('/products', async (req, res) => {
-  const product = await productsService.create(req.body);
-  res.status(201).json(product);
-});
+app.post('/products', productsController.create);
 
 export default app;
