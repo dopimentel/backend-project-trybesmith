@@ -8,7 +8,6 @@ async function getAll(): Promise<ProductSequelizeModel[]> {
 
 async function create(product: ProductInputtableTypes): Promise<CreatedProductReturn> {
   const result = (await ProductModel.create(product)).toJSON();
-  console.log(result);
   const { id, name, price } = result;
   return { id, name, price };
 }
