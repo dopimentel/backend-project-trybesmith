@@ -2,6 +2,12 @@ import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 import db from './index';
 import { Order } from '../../types/Order';
 
+export type GetAllOrderReturn = {
+  id: number;
+  userId: number;
+  productIds: number[];
+}[];
+
 type OrderInputtableTypes = Optional<Order, 'id'>;
 type OrderSequelizeModelCreator = ModelDefined<Order, OrderInputtableTypes>;
 export type OrderSequelizeModel = Model<Order, OrderInputtableTypes>;
