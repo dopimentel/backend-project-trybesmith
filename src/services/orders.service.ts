@@ -3,7 +3,7 @@ import ProductModel from '../database/models/product.model';
 
 async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   const orders = await OrderModel.findAll();
-  const dataValuesPromises = (orders.map((order) => order.dataValues))
+  const dataValuesPromises = (orders.map((order) => order.toJSON()))
     .map(async ({ id, userId }) => {
       const productIds = await ProductModel.findAll({
         where: {
