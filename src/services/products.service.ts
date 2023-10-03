@@ -8,8 +8,7 @@ async function getAll(): Promise<ProductSequelizeModel[]> {
 }
 
 async function create(product: ProductInputtableTypes): Promise<CreatedProductReturn> {
-  const error = validateProduct(product);
-  if (error) throw error;
+  validateProduct(product);
   const result = (await ProductModel.create(product)).toJSON();
   const { id, name, price } = result;
   return { id, name, price };

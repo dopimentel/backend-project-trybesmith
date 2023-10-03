@@ -7,8 +7,7 @@ import validateLogin from './validations/login.validation';
 
 async function login(loginData: Login): Promise<Token> {
   const { username, password } = loginData;
-  const error = validateLogin(loginData);
-  if (error) throw error;
+  validateLogin(loginData);
   const user = await UserModel.findOne({ where: { username } });
   if (!user || !bcrypt.compareSync(password, user.dataValues.password)) {
     const err = new Error('Username or password invalid');
