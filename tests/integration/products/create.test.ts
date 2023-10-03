@@ -21,13 +21,13 @@ describe('POST /products', function () {
     });
   });
 
-  // describe('when the request is invalid', async function () {
-  //   it('should return status 400 and an error message when no name is provided', async function () {
-  //     const response = await chai.request(app).post('/products').send(productMock.noNameProduct);
+  describe('when the request is invalid', async function () {
+    it('should return status 400 and an error message when no name is provided', async function () {
+      const response = await chai.request(app).post('/products').send(productMock.noNameProduct);
 
-  //     expect(response.status).to.equal(400);
-  //     expect(response.body.message).to.equal('"name" is required');
-  //   });
-  // });
+      expect(response.status).to.equal(400);
+      expect(response.body.message).to.equal('"name" is required');
+    });
+  });
 
 });
