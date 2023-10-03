@@ -8,12 +8,10 @@ export type GetAllOrderReturn = {
   productIds: number[];
 }[];
 
-export type CreatedOrderReturn = {
+export type OrderBody = {
   userId: number;
   productIds: number[];
 };
-
-export type OrderBody = CreatedOrderReturn;
 
 type OrderInputtableTypes = Optional<Order, 'id'>;
 type OrderSequelizeModelCreator = ModelDefined<Order, OrderInputtableTypes>;

@@ -1,6 +1,7 @@
 import OrderModel,
-{ GetAllOrderReturn, OrderBody, CreatedOrderReturn } from '../database/models/order.model';
+{ GetAllOrderReturn, OrderBody } from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
+import UserModel from '../database/models/user.model';
 
 async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   const orders = await OrderModel.findAll();
@@ -18,8 +19,13 @@ async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   return Promise.all(dataValuesPromises);
 }
 
-async function create(orderData: OrderBody): Promise<CreatedOrderReturn> {
+async function create(orderData: OrderBody): Promise<OrderBody | undefined> {
   const { userId, productIds } = orderData;
+  const user = await UserModel.findOne({ where: { id: userId } });
+  if (!user) {
+    return undefined;
+  }
+
   const order = await OrderModel.create({ userId });
   const orderId = order.dataValues.id;
   const products = await ProductModel.findAll({

@@ -9,6 +9,9 @@ async function getAll(req: Request, res: Response) {
 async function create(req: Request, res: Response) {
   const { body } = req;
   const serviceResponse = await ordersService.create(body);
+  if (!serviceResponse) {
+    return res.status(404).json({ message: '"userId" not found' });
+  }
   res.status(201).json(serviceResponse);
 }
 
