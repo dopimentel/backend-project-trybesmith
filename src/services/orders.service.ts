@@ -1,4 +1,5 @@
-import OrderModel, { GetAllOrderReturn } from '../database/models/order.model';
+import OrderModel,
+{ GetAllOrderReturn, OrderBody, CreatedOrderReturn } from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
 
 async function getAllWithProducts(): Promise<GetAllOrderReturn> {
@@ -17,6 +18,21 @@ async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   return Promise.all(dataValuesPromises);
 }
 
+async function create(orderData: OrderBody): Promise<CreatedOrderReturn> {
+  const { userId, productIds } = orderData;
+  const order = await OrderModel.create({ userId });
+  const orderId = order.dataValues.id;
+  const products = await ProductModel.findAll({
+    where: {
+      id: productIds,
+    },
+  });
+  const productsPromises = products.map((product) => product.update({ orderId }));
+  await Promise.all(productsPromises);
+  return { userId, productIds };
+}
+
 export default {
   getAllWithProducts,
+  create,
 };
