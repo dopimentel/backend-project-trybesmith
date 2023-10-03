@@ -1,19 +1,44 @@
 import { User } from "../../src/types/User";
 
-const validPassword = '123456';
-const noEmailLogin = {
+const validUserLogin = 'ValidUser';
+const validPassword = 'sortudo';
+
+const noUsernameLogin = {
+  password: validPassword,
+};
+const noPasswordLogin = {
+  username: validUserLogin,
+};
+
+const notExistingUserLogin = {
+  username: 'NotFoundUser',
   password: validPassword,
 };
 
-const validEmailLogin = 'email@email.com';
+const userWithInvalidPassword = {
+  username: validUserLogin,
+  password: 'invalidPassword',
+};
 
-const noPasswordLogin = {
-  email: validEmailLogin,
+const hashPassword = '$2a$10$pr2RhcOmbv/KCDQF1RG1yOpfG.LzxsbsBSYTcxn5oJlJdwizNElsq';
+const existingUser: User = {
+  id: 1,
+  username: validUserLogin,
+  vocation: 'Druid',
+  level: '100',
+  password: hashPassword,
+};
+
+const validLogin = {
+  username: validUserLogin,
+  password: validPassword,
 };
 
 export default {
-  noEmailLogin,
+  noUsernameLogin,
   noPasswordLogin,
-  validEmailLogin,
-  validPassword,
-}
+  notExistingUserLogin,
+  userWithInvalidPassword,
+  existingUser,
+  validLogin,
+};
