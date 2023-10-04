@@ -2,6 +2,7 @@ import OrderModel,
 { GetAllOrderReturn, OrderBody } from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
 import UserModel from '../database/models/user.model';
+import validateOrder from './validations/order.validation';
 
 async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   const orders = await OrderModel.findAll();
@@ -20,6 +21,7 @@ async function getAllWithProducts(): Promise<GetAllOrderReturn> {
 }
 
 async function create(orderData: OrderBody): Promise<OrderBody | undefined> {
+  validateOrder(orderData);
   const { userId, productIds } = orderData;
   const user = await UserModel.findOne({ where: { id: userId } });
   if (!user) {
