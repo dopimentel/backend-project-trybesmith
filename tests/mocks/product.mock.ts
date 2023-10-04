@@ -37,6 +37,20 @@ const validBodyProduct = {
   orderId: 1,
 };
 
+const updatedValidProduct = {
+  id: 1,
+  name: 'Product 1',
+  price: '100 moedas',
+  orderId: 5,
+}
+
+const updatedValidProduct2 = {
+  id: 2,
+  name: 'Product 2',
+  price: '200 moedas',
+  orderId: 5,
+}
+
 export default {
   validProduct,
   validProduct2,
@@ -44,4 +58,6 @@ export default {
   createdProductReturn,
   noNameProduct,
   validBodyProduct,
+  updatedValidProduct,
+  updatedValidProduct2,
 };

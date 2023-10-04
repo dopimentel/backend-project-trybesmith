@@ -4,9 +4,9 @@ import OrderModel,
 import ProductModel from '../database/models/product.model';
 import UserModel from '../database/models/user.model';
 import validateOrder from './validations/order.validation';
-import config = require('../database/config/database');
+import config from '../database/config/database';
 
-const sequelize = new Sequelize(config);
+export const sequelize = new Sequelize(config);
 
 async function getAllWithProducts(): Promise<GetAllOrderReturn> {
   const orders = await OrderModel.findAll();

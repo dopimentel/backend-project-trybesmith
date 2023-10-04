@@ -1,5 +1,5 @@
 const validOrderFromDB = {
-  id: 1,
+  id: 5,
   userId: 1,
 };
 
@@ -25,10 +25,22 @@ const ordersWithProducts = [
   validOrder2,
 ];
 
+const validBodyOrder = {
+  userId: 1,
+  productIds: [1, 2],
+};
+
+const invalidBodyUser = {
+  userId: 20000,
+  productIds: [1, 2],
+};
+
 export default {
   validOrder,
   validOrderFromDB,
   validOrderFromDB2,
   validOrder2,
   ordersWithProducts,
+  validBodyOrder,
+  invalidBodyUser,
 };
